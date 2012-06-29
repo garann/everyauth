@@ -116,4 +116,9 @@ module.exports = {
       consumerKey: 'Enter your consumer key here'
     , consumerSecret: 'Enter your consumer secret here'
   }
+  , etsy: {
+      consumerKey: 'your key'
+    , consumerSecret: 'your secret'
+    , scope: 'profile_r'
+  }
 };

@@ -91,6 +91,8 @@
       label(for='openid_identifier') OpenID Identifier: &nbsp;
       input(type='text', name='openid_identifier')
       input(type='submit') Login
+  #etsy-login
+    a(href='/auth/etsy',style='border: 0px') Login with Etsy
 - else
   h2 Authenticated
   - if (everyauth.facebook)
@@ -177,5 +179,8 @@
   - if (everyauth.mendeley)
     h3 Mendeley User Data
     p= JSON.stringify(everyauth.mendeley.user)
+  - if (everyauth.etsy)
+    h3 Etsy User Data
+    p= JSON.stringify(everyauth.etsy.user)
   h3
     a(href='/logout') Logout

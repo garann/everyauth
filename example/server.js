@@ -51,6 +51,7 @@ var usersBySoundCloudId = {};
 var usersByMailchimpId = {};
 var usersMailruId = {};
 var usersByMendeleyId = {};
+var usersByEtsyId = {};
 var usersByLogin = {
   'brian@example.com': addUser({ login: 'brian@example.com', password: 'password'})
 };
@@ -410,6 +411,15 @@ everyauth
         (usersByMailchimpId[mailchimpUser.user_id] = addUser('mailchimp', mailchimpUser));
     })
     .redirectPath("/");
+
+everyauth.etsy
+  .consumerKey(conf.etsy.consumerKey)
+  .consumerSecret(conf.etsy.consumerSecret)
+  .scope(conf.etsy.scope)
+  .findOrCreateUser( function (sess, accessToken, accessSecret, etsyUser) {
+    return usersByEtsyId[etsyUser.id] || (usersByEtsyId[etsyUser.id] = addUser('etsy', etsyUser));
+  })
+  .redirectPath('/');
 
 var app = express.createServer(
     express.bodyParser()
